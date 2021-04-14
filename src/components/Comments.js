@@ -39,9 +39,19 @@ function Comments() {
     },
   });
 
-  console.log({ result });
+  // console.log({ result });
 
-  return null;
+  if (!result.data) {
+    return <p>Loading...</p>;
+  }
+
+  return (
+    <ul>
+      {result.data.gitHub.repository.issue.comments.nodes.map((commentNode) => {
+        return <li key={commentNode.id}>{commentNode.body}</li>;
+      })}
+    </ul>
+  );
 }
 
 export default Comments;
