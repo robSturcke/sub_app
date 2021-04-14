@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import './App.css';
 import { AuthContext } from './context/AuthContext';
-import Comments from './components/Comments';
+import CommentsQuery from './components/CommentsQuery';
 import Input from './components/Input';
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div style={{ minWidth: 400 }}>
-          <Comments />
+          <CommentsQuery />
           <Input />
         </div>
       </header>
