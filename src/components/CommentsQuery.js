@@ -1,55 +1,16 @@
 import React from 'react';
-import { useQuery } from 'urql';
 import Comments from './Comments';
-
-const COMMENTS_QUERY = `query CommentsListQuery(
-  $repoOwner: String!
-  $repoName: String!
-  $issueNumber: Int!
-) {
-  gitHub {
-    repository(name: $repoName, owner: $repoOwner) {
-      issue(number: $issueNumber) {
-        id
-        title
-        bodyText
-        comments(last: 100) {
-          nodes {
-            author {
-              login
-              avatarUrl(size: 100)
-            }
-            body
-            id
-            url
-            viewerDidAuthor
-          }
-        }
-      }
-    }
-  }
-}
-`;
+import useCommentsHistory from './hooks/useCommentsHistory';
 
 function QueryComments() {
-  const [result] = useQuery({
-    query: COMMENTS_QUERY,
-    variables: {
-      repoOwner: 'robSturcke',
-      repoName: 'sub_app',
-      issueNumber: 1,
-    },
-  });
-
+  const comments = useCommentsHistory();
   // console.log({ result });
 
-  if (!result.data) {
+  if (!comments) {
     return <p>Loading...</p>;
   }
 
-  return (
-    <Comments comments={result.data.gitHub.repository.issue.comments.nodes} />
-  );
+  return <Comments comments={comments} />;
 }
 
 export default QueryComments;

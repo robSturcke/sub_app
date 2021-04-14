@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
 import './App.css';
 import { AuthContext } from './context/AuthContext';
-import CommentsQuery from './components/CommentsQuery';
+// import CommentsQuery from './components/CommentsQuery';
+import CommentsSubscription from './components/CommentsSubscription';
 import Input from './components/Input';
 
 function App() {
@@ -9,11 +10,11 @@ function App() {
 
   if (!status || !status.github) {
     return (
-      <div>
+      <>
         <h1>Log In</h1>
         <p>login with github</p>
         <button onClick={() => login('github')}>Github Login</button>
-      </div>
+      </>
     );
   }
 
@@ -21,7 +22,8 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div style={{ minWidth: 400 }}>
-          <CommentsQuery />
+          {/* <CommentsQuery /> */}
+          <CommentsSubscription />
           <Input />
         </div>
       </header>
