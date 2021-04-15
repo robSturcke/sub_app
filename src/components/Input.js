@@ -86,7 +86,7 @@ function NewCommentInput() {
     executeMutation({ subjectId: 'MDU6SXNzdWU4NTc0MzUwMTY=', body });
   };
 
-  // console.log({ mutationResult });
+  console.log({ mutationResult });
   return <Input onSubmit={handleSubmit} />;
 }
 
